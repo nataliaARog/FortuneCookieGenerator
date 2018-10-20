@@ -27,10 +27,12 @@ public class FortuneCookieController {
     public @ResponseBody FortuneCookie generateFortuneCookie(@RequestParam("client") String client,
                           @RequestParam("company") String company) {
         String quote = quoteRepository.getRandomQuote();
-        FortuneCookie fortuneCookie = fortuneCookieBuilder.withClient(client).
-                withCompany(company).
-                withQuote(quote).
-                build();
+        FortuneCookie fortuneCookie = fortuneCookieBuilder
+        												  .cleanAll()
+        												  .withClient(client)
+        												  .withCompany(company)
+        												  .withQuote(quote)
+        												  .build();
         return fortuneCookie;
     }
 
